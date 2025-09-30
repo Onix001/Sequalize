@@ -1,0 +1,37 @@
+
+<div class="page-header"><h1>✏️ Editando {{user.name}}</h1></div>
+
+<form action="/users/update" method="POST" class="form">
+  <input type="hidden" name="id" value="{{user.id}}"/>
+  <label>Nome*</label><input name="name" value="{{user.name}}" />
+  <label>Email*</label><input name="email" value="{{user.email}}" />
+  <label>Profissão</label><input name="occupation" value="{{user.occupation}}" />
+  <label><input type="checkbox" name="newsletter" {{#if user.newsletter}}checked{{/if}}/> Receber newsletter</label>
+  <button>Salvar</button>
+</form>
+
+<section class="addresses-section">
+  <h3>Endereços</h3>
+  <form action="/address/create" method="POST" class="address-form">
+    <input type="hidden" name="userId" value="{{user.id}}"/>
+    <label>Rua</label><input name="street"/>
+    <label>Número</label><input name="number"/>
+    <label>Cidade</label><input name="city"/>
+    <button>Adicionar Endereço</button>
+  </form>
+
+  {{#if user.addresses.length}}
+    <ul>
+      {{#each user.addresses}}
+        <li>
+          {{this.street}} {{#if this.number}}, nº {{this.number}}{{/if}} - {{this.city}}
+          <form action="/address/delete" method="POST" style="display:inline">
+            <input type="hidden" name="id" value="{{this.id}}"/>
+            <input type="hidden" name="userId" value="{{../user.id}}"/>
+            <button>Excluir</button>
+          </form>
+        </li>
+      {{/each}}
+    </ul>
+  {{/if}}
+</section>

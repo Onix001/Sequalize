@@ -1,0 +1,24 @@
+
+<div class="page-header"><h1>👤 {{user.name}}</h1></div>
+
+<div class="user-details">
+  <p><strong>Email:</strong> {{user.email}}</p>
+  <p><strong>Profissão:</strong> {{user.occupation}}</p>
+  <p><strong>Cadastrado em:</strong> {{formatDate user.createdAt}}</p>
+</div>
+
+{{#if user.addresses.length}}
+  <h3>Endereços ({{user.addresses.length}})</h3>
+  <ul>
+    {{#each user.addresses}}
+      <li>{{this.street}} {{#if this.number}}, nº {{this.number}}{{/if}} - {{this.city}}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Sem endereços.</p>
+{{/if}}
+
+<a href="/users/edit/{{user.id}}">Editar</a>
+<form action="/users/delete/{{user.id}}" method="POST" style="display:inline">
+  <button type="submit" onclick="return confirm('Excluir usuário?')">Excluir</button>
+</form>

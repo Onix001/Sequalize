@@ -1,0 +1,37 @@
+
+<div class="page-header">
+  <h1>👥 Usuários</h1>
+  <form method="GET" action="/" class="search-form">
+    <input type="text" name="q" placeholder="Buscar por nome" value="{{q}}"/>
+    <button>🔎 Buscar</button>
+  </form>
+</div>
+
+{{#if error}}<div class="alert">{{error}}</div>{{/if}}
+
+{{#if users.length}}
+  <div class="users-grid">
+    {{#each users}}
+      <div class="user-card">
+        <h3>{{this.name}}</h3>
+        <p>{{this.occupation}}</p>
+        <p>{{#if this.newsletter}}📧 Recebe newsletter{{else}}📭 Não recebe{{/if}}</p>
+        <div class="actions">
+          <a href="/users/{{this.id}}">Ver</a> | <a href="/users/edit/{{this.id}}">Editar</a>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="pagination">
+    {{#if (gt currentPage 1)}}
+      <a href="/?page={{subtract currentPage 1}}&q={{q}}">Anterior</a>
+    {{/if}}
+    <span>Página {{currentPage}} de {{totalPages}}</span>
+    {{#if (lt currentPage totalPages)}}
+      <a href="/?page={{add currentPage 1}}&q={{q}}">Próxima</a>
+    {{/if}}
+  </div>
+{{else}}
+  <p>Nenhum usuário encontrado.</p>
+{{/if}}

@@ -1,0 +1,13 @@
+
+<div class="page-header"><h1>➕ Cadastrar Usuário</h1></div>
+
+{{#if error}}<div class="alert">{{error}}</div>{{/if}}
+
+<form action="/users/create" method="POST" class="form">
+  <label>Nome*</label><input type="text" name="name" value="{{formData.name}}"/>
+  <label>Email*</label><input type="email" name="email" value="{{formData.email}}"/>
+  <label>Senha*</label><input type="password" name="password"/>
+  <label>Profissão</label><input type="text" name="occupation" value="{{formData.occupation}}"/>
+  <label><input type="checkbox" name="newsletter" {{#if formData.newsletter}}checked{{/if}}/> Receber newsletter</label>
+  <button type="submit">Salvar</button>
+</form>
