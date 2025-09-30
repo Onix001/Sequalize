@@ -49,5 +49,5 @@ docker-compose up --build
 
 ## Observações
 
-- O projeto foi gerado automaticamente com exemplos funcionais; valide as variáveis de ambiente antes de rodar.
+- Valide as variáveis de ambiente antes de rodar.
 - Certifique-se de que o MySQL esteja rodando e acessível com as credenciais do `.env`.
